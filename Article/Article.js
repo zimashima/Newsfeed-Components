@@ -119,7 +119,6 @@ function newsArticle(title, date, firstParagraph, secondParagraph, thirdParagrap
   const article = document.createElement('div')
   const newsTitle = document.createElement('h2')
   const newsDate = document.createElement('p')
-  // const content = document.createElement('div')
   const paragraphOne = document.createElement('p')
   const paragraphTwo = document.createElement('p')
   const paragraphThree = document.createElement('p')
@@ -133,11 +132,6 @@ function newsArticle(title, date, firstParagraph, secondParagraph, thirdParagrap
   article.appendChild(paragraphTwo)
   article.appendChild(paragraphThree)
   article.appendChild(spanButton)
-
-  // article.appendChild(content)
-  // content.appendChild(paragraphOne)
-  // content.appendChild(paragraphTwo)
-  // content.appendChild(paragraphThree)
 
 
   spanButton.addEventListener('click', e =>{
