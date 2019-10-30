@@ -119,6 +119,7 @@ function newsArticle(title, date, firstParagraph, secondParagraph, thirdParagrap
   const article = document.createElement('div')
   const newsTitle = document.createElement('h2')
   const newsDate = document.createElement('p')
+  // const content = document.createElement('div')
   const paragraphOne = document.createElement('p')
   const paragraphTwo = document.createElement('p')
   const paragraphThree = document.createElement('p')
@@ -126,13 +127,40 @@ function newsArticle(title, date, firstParagraph, secondParagraph, thirdParagrap
 
   // structure
 
+  article.appendChild(newsTitle)
+  article.appendChild(newsDate)
+  article.appendChild(paragraphOne)
+  article.appendChild(paragraphTwo)
+  article.appendChild(paragraphThree)
+  article.appendChild(spanButton)
+
+  // article.appendChild(content)
+  // content.appendChild(paragraphOne)
+  // content.appendChild(paragraphTwo)
+  // content.appendChild(paragraphThree)
+
+
+  spanButton.addEventListener('click', e =>{
+    article.classList.toggle('article-open')
+  })
+
   //class
   article.classList.add('article')
+  article.classList.add('article-open')
   newsDate.classList.add('date')
   spanButton.classList.add('expandButton')
-  
 
+  //content
 
+  newsTitle.textContent = title
+  newsDate.textContent = date
+  paragraphOne.textContent = firstParagraph
+  paragraphTwo.textContent = secondParagraph
+  paragraphThree.textContent = thirdParagraph
 
   return article
 }
+
+const newsDat = data.map(dat => newsArticle(dat.title, dat.date, dat.firstParagraph,dat.secondParagraph,dat.thirdParagraph))
+
+newsDat.forEach(news => document.querySelector('.articles').appendChild(news))
