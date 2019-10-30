@@ -135,12 +135,13 @@ function newsArticle(title, date, firstParagraph, secondParagraph, thirdParagrap
 
 
   spanButton.addEventListener('click', e =>{
+    spanButton.classList.toggle('article')
     article.classList.toggle('article-open')
+    spanButton.textContent = "okay, that's enough for today."
   })
 
   //class
   article.classList.add('article')
-  article.classList.add('article-open')
   newsDate.classList.add('date')
   spanButton.classList.add('expandButton')
 
@@ -151,6 +152,10 @@ function newsArticle(title, date, firstParagraph, secondParagraph, thirdParagrap
   paragraphOne.textContent = firstParagraph
   paragraphTwo.textContent = secondParagraph
   paragraphThree.textContent = thirdParagraph
+  spanButton.textContent = 'Nosy much? What are you waiting for?';
+
+
+  //stretch close button
 
   return article
 }

@@ -47,7 +47,6 @@ function menuComp(menuarray) {
 
   //class
   theMenu.classList.add('menu')
-  theMenu.classList.add('menu--open')
 
   //content
 
@@ -61,7 +60,7 @@ function menuComp(menuarray) {
   const menubutton = document.querySelector('.menu-button')
 
   menubutton.addEventListener('click', (e)=>{
-    menubutton.classList.toggle('menu--open')
+    theMenu.classList.toggle('menu--open')
   })
 
   return theMenu
