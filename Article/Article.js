@@ -163,3 +163,89 @@ function newsArticle(title, date, firstParagraph, secondParagraph, thirdParagrap
 const newsDat = data.map(dat => newsArticle(dat.title, dat.date, dat.firstParagraph,dat.secondParagraph,dat.thirdParagraph))
 
 newsDat.forEach(news => document.querySelector('.articles').appendChild(news))
+
+
+//newsSubmission
+
+function newsSubmission() {
+  //define
+  var newsForm = document.createElement('div')
+  newsForm.style.height = "500px"
+  newsForm.style.padding = "3%"
+
+  var newsFormTitle = document.createElement('h2')
+  newsFormTitle.style.textAlign = "center"
+
+  var topicDiv = document.createElement('div')
+  
+  var topicName = document.createElement('p')
+  topicName.style.textAlign = "center"
+  var newsTopic = document.createElement('input')
+  newsTopic.style.height = "50px"
+  newsTopic.style.width = "100%"
+  newsTopic.style.border = "1px solid lightgray"
+  newsTopic.style.borderRadius = "10px"
+  newsTopic.style.fontSize = "1.6rem"
+
+
+  var contentDiv = document.createElement('div')
+  var content = document.createElement('p')
+  content.style.textAlign = "center"
+  var newsContent = document.createElement('textarea')
+  newsContent.style.height = "250px"
+  newsContent.style.width = "100%"
+  newsContent.style.border = "1px solid lightgray"
+  newsContent.style.borderRadius = "10px"
+  newsContent.style.fontSize = "1.6rem"
+  
+  var submitButton = document.createElement('button')
+  submitButton.style.backgroundColor = "Green"
+  submitButton.style.border = "1px solid green"
+  submitButton.style.borderRadius = "10px"
+  submitButton.style.height = "50px"
+  submitButton.style.width = "50%"
+  submitButton.style.color = "white"
+
+  //structure
+  newsForm.appendChild(newsFormTitle)
+  newsForm.appendChild(topicDiv)
+  newsForm.appendChild(contentDiv)
+
+  topicDiv.appendChild(topicName)
+  topicDiv.appendChild(newsTopic)
+  contentDiv.appendChild(content)
+  contentDiv.appendChild(newsContent)
+  newsForm.appendChild(submitButton)
+  
+  //class
+  newsForm.classList.add('article')
+  newsTopic.classList.add('title')
+  newsTopic.setAttribute('type','text')
+  newsTopic.setAttribute('name','newstitle')
+  newsTopic.setAttribute('id','newstitle')
+  newsContent.classList.add('content')
+  newsContent.setAttribute('type','text')
+  newsContent.setAttribute('id','newscontent')
+  newsContent.setAttribute('name','newscontent')
+
+
+  //content
+  submitButton.textContent = "Submit"
+  newsFormTitle.textContent = "Have some news to share? Submit your article below"
+  topicName.textContent = "Title"
+  content.textContent = "Content"
+
+  //interactive
+  submitButton.addEventListener('click', e=> {
+    let theTitle = document.getElementById('newstitle').value
+    let theContent = document.getElementById('newscontent').value
+    let theDate = Date()
+
+    let newNews = newsArticle(theTitle, theDate,theContent)
+    document.querySelector('.articles').prepend(newNews)
+  })
+
+  return newsForm
+}
+
+document.querySelector('.articles').appendChild(newsSubmission())

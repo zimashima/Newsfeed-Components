@@ -53,7 +53,7 @@ function menuComp(menuarray) {
   menuarray.forEach(item => {
     let theItem = document.createElement('li');
     theItem.textContent = item;
-    theItem.classList.add('menu-ul-li')
+    theItem.classList.add('menu-ul-li');
     menuPanel.appendChild(theItem);
   })
 
@@ -61,6 +61,7 @@ function menuComp(menuarray) {
 
   menubutton.addEventListener('click', (e)=>{
     theMenu.classList.toggle('menu--open')
+    theMenu.style.transition = "0.3s";
   })
 
   return theMenu
