@@ -112,3 +112,140 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+
+function newsArticle(title, date, firstParagraph, secondParagraph, thirdParagraph){
+  
+  // definition 
+  const article = document.createElement('div')
+  const newsTitle = document.createElement('h2')
+  const newsDate = document.createElement('p')
+  const paragraphOne = document.createElement('p')
+  const paragraphTwo = document.createElement('p')
+  const paragraphThree = document.createElement('p')
+  const spanButton = document.createElement('span')
+
+  // structure
+
+  article.appendChild(newsTitle)
+  article.appendChild(newsDate)
+  article.appendChild(paragraphOne)
+  article.appendChild(paragraphTwo)
+  article.appendChild(paragraphThree)
+  article.appendChild(spanButton)
+
+
+  spanButton.addEventListener('click', e =>{
+    spanButton.classList.toggle('article')
+    article.classList.toggle('article-open')
+    spanButton.textContent = "okay, that's enough for today."
+  })
+
+  //class
+  article.classList.add('article')
+  newsDate.classList.add('date')
+  spanButton.classList.add('expandButton')
+
+  //content
+
+  newsTitle.textContent = title
+  newsDate.textContent = date
+  paragraphOne.textContent = firstParagraph
+  paragraphTwo.textContent = secondParagraph
+  paragraphThree.textContent = thirdParagraph
+  spanButton.textContent = 'Nosy much? What are you waiting for?';
+
+
+  //stretch close button
+
+  return article
+}
+
+const newsDat = data.map(dat => newsArticle(dat.title, dat.date, dat.firstParagraph,dat.secondParagraph,dat.thirdParagraph))
+
+newsDat.forEach(news => document.querySelector('.articles').appendChild(news))
+
+
+//newsSubmission
+
+function newsSubmission() {
+  //define
+  var newsForm = document.createElement('div')
+  newsForm.style.height = "500px"
+  newsForm.style.padding = "3%"
+
+  var newsFormTitle = document.createElement('h2')
+  newsFormTitle.style.textAlign = "center"
+
+  var topicDiv = document.createElement('div')
+  
+  var topicName = document.createElement('p')
+  topicName.style.textAlign = "center"
+  var newsTopic = document.createElement('input')
+  newsTopic.style.height = "50px"
+  newsTopic.style.width = "100%"
+  newsTopic.style.border = "1px solid lightgray"
+  newsTopic.style.borderRadius = "10px"
+  newsTopic.style.fontSize = "1.6rem"
+
+
+  var contentDiv = document.createElement('div')
+  var content = document.createElement('p')
+  content.style.textAlign = "center"
+  var newsContent = document.createElement('textarea')
+  newsContent.style.height = "250px"
+  newsContent.style.width = "100%"
+  newsContent.style.border = "1px solid lightgray"
+  newsContent.style.borderRadius = "10px"
+  newsContent.style.fontSize = "1.6rem"
+  
+  var submitButton = document.createElement('button')
+  submitButton.style.backgroundColor = "Green"
+  submitButton.style.border = "1px solid green"
+  submitButton.style.borderRadius = "10px"
+  submitButton.style.height = "50px"
+  submitButton.style.width = "50%"
+  submitButton.style.color = "white"
+
+  //structure
+  newsForm.appendChild(newsFormTitle)
+  newsForm.appendChild(topicDiv)
+  newsForm.appendChild(contentDiv)
+
+  topicDiv.appendChild(topicName)
+  topicDiv.appendChild(newsTopic)
+  contentDiv.appendChild(content)
+  contentDiv.appendChild(newsContent)
+  newsForm.appendChild(submitButton)
+  
+  //class
+  newsForm.classList.add('article')
+  newsTopic.classList.add('title')
+  newsTopic.setAttribute('type','text')
+  newsTopic.setAttribute('name','newstitle')
+  newsTopic.setAttribute('id','newstitle')
+  newsContent.classList.add('content')
+  newsContent.setAttribute('type','text')
+  newsContent.setAttribute('id','newscontent')
+  newsContent.setAttribute('name','newscontent')
+
+
+  //content
+  submitButton.textContent = "Submit"
+  newsFormTitle.textContent = "Have some news to share? Submit your article below"
+  topicName.textContent = "Title"
+  content.textContent = "Content"
+
+  //interactive
+  submitButton.addEventListener('click', e=> {
+    let theTitle = document.getElementById('newstitle').value
+    let theContent = document.getElementById('newscontent').value
+    let theDate = Date()
+
+    let newNews = newsArticle(theTitle, theDate,theContent)
+    document.querySelector('.articles').prepend(newNews)
+  })
+
+  return newsForm
+}
+
+document.querySelector('.articles').appendChild(newsSubmission())
